@@ -6,14 +6,32 @@ addEventListener("DOMContentLoaded", function () {
       url = tabs[0].url;
 
       // alert("Current URL: " + url)
-      let rightURL = "https://ufuture.uitm.edu.my/sufo/questions/index";
+      let sufoURL = "https://ufuture.uitm.edu.my/sufo/questions/index";
+      let kifoURL = "https://ufuture.uitm.edu.my/kifo/questions/index"; 
+      let entranceSurveyURL = "https://ufuture.uitm.edu.my/ess/answers/entry/"
+      let exitSurveyURL = "https://ufuture.uitm.edu.my/ess/answers/exits/"
 
-      if (!url.includes(rightURL)) {
-        // add error message here below the button
-        // document.getElementById("error").innerHTML ="Please go to the correct page";
+      let urls = [sufoURL, kifoURL, entranceSurveyURL, exitSurveyURL]
+      let found = false;
+      for (let i = 0; i < urls.length; i++) {
+        if (url.includes(urls[i])) {
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) {
         alert("Please run the script on the right website.");
         return;
       }
+
+      // if (!url.includes(sufoURL)) {
+      //   // add error message here below the button
+      //   // document.getElementById("error").innerHTML ="Please go to the correct page";
+      //   alert("Please run the script on the right website.");
+      //   return;
+      // }
+
       chrome.scripting.executeScript({
         // target is the current tab
         target: { tabId: tabs[0].id },
