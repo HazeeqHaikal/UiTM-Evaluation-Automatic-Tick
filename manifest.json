@@ -1,20 +1,20 @@
 {
     "manifest_version": 3,
-    "name": "SuFO UiTM Automatic Tick",
+    "name": "UiTM Evaluation Automatic Tick",
     "version": "1.0",
-    "description": "Extension to automatically tick SuFO UiTM forms for you. It will tick every last option in every question. It will also automatically submit the form for you. This extension is not affiliated with UiTM in any way. Use at your own risk.",
-    "author": "Muhammad Hazeeq Haikal bin Roslan",
+    "description": "This extension will automatically tick all the boxes in UiTM Evaluation.",
+    "author": "UNIVERSE",
     "content_scripts": [{
-        "matches": ["<all_urls>"],
+        "matches": ["https://ufuture.uitm.edu.my/*"],
         "js": ["index.js"],
         "css": ["style.css"]
     }],
     "background": {
         "service_worker": "index.js"
     },
-    "permissions": ["activeTab", "scripting", "storage", "declarativeContent"],
+    "permissions": ["scripting"],
     "action": {
-        "default_popup": "sufo.html",
-        "default_title": "SuFO UiTM Automatic Tick"
+        "default_popup": "index.html",
+        "default_title": "UiTM Evaluation Automatic Tick"
     }
 }
