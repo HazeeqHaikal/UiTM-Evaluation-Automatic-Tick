@@ -2,7 +2,10 @@
 
 Extension ini akan mengisi semua soalan SuFO/KIFO/Entrace/Exit Survey UiTM secara automatik. Extension ini akan mengisi semua soalan. Kebanyakkan sudah pon tidak membaca satu soalan dari situ jadi ini proses yang menyenangkan lagi.
 
-Untuk soalan Entrance dan KIFO akan diisi dengan pilihan pertama. Untuk soalan Exit Survey dan SuFO akan diisi dengan pilihan terakhir. Hal ini kerana kebanyakkan soalan Entrance dan KIFO survey memerlukan pilihan pertama iaitu paling rendah disebabkan oleh soalan tersebut adalah untuk mengukur tahap pengetahuan pelajar pada peringkat awal yang mana pelajar tidak tahu apa-apa lagi. Untuk soalan Exit Survey diisi dengan pilihan terakhir kerana kebanyakkan soalan Exit Survey adalah untuk mengukur tahap pengetahuan pelajar pada peringkat akhir yang mana pelajar sudah tahu kebanyakkan perkara. Untuk SuFO pula diisi dengan pilihan terakhir kerana kebanyakkan soalan SuFO adalah untuk mengukur tahap kepuasan pelajar mempelajari sesuatu subjek dengan seoarang pensyarah. Jadi, pilihan terakhir menyatakan kepuasan yang paling tinggi.
+- Untuk soalan Entrance dan KIFO, pilih pilihan pertama
+- Pilihan pertama menunjukkan tahap pengetahuan pelajar yang paling rendah pada peringkat awal
+- Untuk soalan Exit Survey dan SuFO, pilih pilihan terakhir
+- Pilihan terakhir menunjukkan tahap pengetahuan pelajar yang paling tinggi pada peringkat akhir atau tahap kepuasan pelajar yang paling tinggi mempelajari subjek dengan pensyarah
 
 Cara untuk install extension ini adalah seperti berikut:
 
