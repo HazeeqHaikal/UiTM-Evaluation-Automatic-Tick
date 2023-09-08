@@ -5,7 +5,7 @@
     "description": "This extension will automatically tick all the boxes in UiTM Evaluation.",
     "author": "UNIVERSE",
     "content_scripts": [{
-        "matches": ["https://ufuture.uitm.edu.my/*"],
+        "matches": ["<all_urls>"],
         "js": ["index.js"],
         "css": ["style.css"]
     }],
