@@ -22,33 +22,32 @@ addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // document.addEventListener("DOMContentLoaded", function () {
-      if (!found) {
-        let button = document.getElementById("start");
-        let status = document.getElementById("status");
-        let statusMessage = document.getElementById("status-message");
-        statusMessage.innerHTML = "Please run the script on the right website.";
-        status.classList.remove("alert-primary");
-        status.classList.add("alert-danger");
-        button.blur();
+        if (!found) {
+          let button = document.getElementById("start");
+          let status = document.getElementById("status");
+          let statusMessage = document.getElementById("status-message");
+          statusMessage.innerHTML =
+            "Please run the script on the right website.";
+          status.classList.remove("alert-primary");
+          status.classList.add("alert-danger");
+          button.blur();
 
-        // make the background red for 3 seconds
-        setTimeout(() => {
-          statusMessage.innerHTML = "Try again.";
-          status.classList.remove("alert-danger");
-          status.classList.add("alert-primary");
-        }, 3000);
+          // make the background red for 3 seconds
+          setTimeout(() => {
+            statusMessage.innerHTML = "Try again.";
+            status.classList.remove("alert-danger");
+            status.classList.add("alert-primary");
+          }, 3000);
 
-        return;
-      }
+          return;
+        }
 
-      chrome.scripting.executeScript({
-        // target is the current tab
-        target: { tabId: tabs[0].id },
-        function: start(surveyType),
+        chrome.scripting.executeScript({
+          // target is the current tab
+          target: { tabId: tabs[0].id },
+          function: start(surveyType),
+        });
       });
-      // });
-    });
   });
 });
 

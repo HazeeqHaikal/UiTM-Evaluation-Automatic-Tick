@@ -9,10 +9,11 @@
         "js": ["index.js"],
         "css": ["style.css"]
     }],
+
     "background": {
         "service_worker": "index.js"
     },
-    "permissions": ["scripting"],
+    "permissions": ["scripting", "activeTab", "tabs"],
     "action": {
         "default_popup": "index.html",
         "default_title": "UiTM Evaluation Automatic Tick"
