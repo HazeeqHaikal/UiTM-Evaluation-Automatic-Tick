@@ -6,8 +6,7 @@
     "author": "UNIVERSE",
     "content_scripts": [{
         "matches": ["<all_urls>"],
-        "js": ["index.js"],
-        "css": ["style.css"]
+        "js": ["index.js"]
     }],
 
     "background": {
@@ -17,5 +16,8 @@
     "action": {
         "default_popup": "index.html",
         "default_title": "UiTM Evaluation Automatic Tick"
+    },
+    "icons": {
+        "128": "icon128.png"
     }
 }
