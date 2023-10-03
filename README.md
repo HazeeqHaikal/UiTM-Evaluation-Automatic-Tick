@@ -7,13 +7,4 @@ Extension ini akan mengisi semua soalan SuFO/KIFO/Entrace/Exit Survey UiTM secar
 - Untuk soalan Exit Survey dan SuFO, pilih pilihan terakhir
 - Pilihan terakhir menunjukkan tahap pengetahuan pelajar yang paling tinggi pada peringkat akhir atau tahap kepuasan pelajar yang paling tinggi mempelajari subjek dengan pensyarah
 
-Cara untuk install extension ini adalah seperti berikut:
-
-1. Tekan Code
-2. Tekan Download ZIP
-3. Ekstrak fail yang telah dimuat turun
-4. Pergi ke chrome://extensions/ atau edge://extensions/
-5. Pastikan Developer mode diaktifkan
-6. Tekan Load unpacked
-7. Pilih folder yang telah diekstrak tadi
-8. Selesai
+Download extension ini di [sini](https://chrome.google.com/webstore/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl?hl=en)

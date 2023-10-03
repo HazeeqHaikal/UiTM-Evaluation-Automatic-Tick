@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "UiTM Evaluation Automatic Tick",
-    "version": "1.0",
+    "version": "1.2",
     "description": "This extension will automatically tick all the boxes in UiTM Evaluation.",
     "author": "UNIVERSE",
     "content_scripts": [{
