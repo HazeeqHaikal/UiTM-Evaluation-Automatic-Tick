@@ -2,6 +2,8 @@
 addEventListener("DOMContentLoaded", () => {
   document.getElementById("start").addEventListener("click", () => {
     let url = "";
+    let userOption = document.getElementById("userOption").value; // get user's preferred option
+
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       url = tabs[0].url;
       let found = false;
@@ -42,10 +44,17 @@ addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // Set the max value of the slider based on the survey type
+      if (surveyType === "sufo") {
+        document.getElementById("userOption").max = "4";
+      } else {
+        document.getElementById("userOption").max = "5";
+      }
+
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         func: start,
-        args: [surveyType],
+        args: [surveyType, userOption], // pass userOption to start function
       });
 
       let button = document.getElementById("start");
@@ -67,25 +76,18 @@ addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function start(surveyType) {
+function start(surveyType, userOption) {
   // It selects all the radio input elements and clicks them
   let radios = document.querySelectorAll("input[type='radio']");
   for (let i = 0; i < radios.length; i++) {
     // get value of the radio input
     let value = radios[i].value;
-    if (surveyType === "entrance" || surveyType === "kifo") {
-      if (parseInt(value) === 1) {
-        radios[i].click();
-      }
-    } else {
-        radios[i].click();
+    if (parseInt(value) === parseInt(userOption)) { // check if the value matches userOption
+      radios[i].click();
     }
   }
 
   // click the submit button after everything is done
-  // let submit = document.querySelector("input[type='submit']");
-  // submit.click();
-  // find the button that has the text "Submit"
   let buttons = document.querySelectorAll("button");
   for (let i = 0; i < buttons.length; i++) {
     if (buttons[i].innerText === "Submit") {
