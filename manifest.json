@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "UiTM Evaluation Automatic Tick",
+    "version": "2.0",
+    "description": "Automatically fill UiTM course evaluations (SuFO, KIFO, Entry & Exit Surveys) with improved UI and security.",
+    "author": "UNIVERSE",
+    "permissions": ["scripting", "activeTab"],
+    "host_permissions": [
+        "https://ufuture.uitm.edu.my/*"
+    ],
+    "content_scripts": [{
+        "matches": ["https://ufuture.uitm.edu.my/*"],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+    }],
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "UiTM Evaluation Auto-Fill"
+    },
+    "icons": {
+        "128": "icon128.png"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    }
+}

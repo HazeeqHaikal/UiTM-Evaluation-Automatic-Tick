@@ -1,0 +1,20 @@
+# Development folders
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temp files
+*.log
+*.tmp
+
+# Assets folder (if not needed)
+assets/
+
+# Screenshot guide (development only)
+SCREENSHOT_GUIDE.md
