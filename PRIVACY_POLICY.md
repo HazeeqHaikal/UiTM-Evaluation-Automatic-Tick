@@ -70,8 +70,9 @@ You have complete control over the extension:
 
 ## Contact
 If you have questions about this privacy policy or the extension's data practices:
+- Chrome Web Store: https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl
 - GitHub Issues: https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/issues
-- Email: [Your email if you want to provide one]
+- Source Code: https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick
 
 ## Compliance
 This extension complies with:

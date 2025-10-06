@@ -2,9 +2,30 @@
 
 **Version 2.0** - Modern UI | Enhanced Security | Full Automation
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Download-blue?logo=googlechrome)](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick)
+[![Version](https://img.shields.io/badge/Version-2.0-green)](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/releases)
+
 Sambungan pelayar yang akan mengisi semua soalan **SuFO**, **KIFO**, **Entrance Survey** dan **Exit Survey** UiTM secara automatik. Dengan UI yang lebih moden dan ciri automasi penuh dari dashboard!
 
 A browser extension that automatically fills all UiTM **SuFO**, **KIFO**, **Entrance Survey** and **Exit Survey** questions. Features modern UI and full automation from the dashboard!
+
+---
+
+## 🚀 Quick Install / Pemasangan Cepat
+
+### **📦 Install from Chrome Web Store (Recommended)**
+
+**[→ Download from Chrome Web Store](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)**
+
+1. Click the link above
+2. Click **"Add to Chrome"** / **"Tambah ke Chrome"**
+3. Confirm by clicking **"Add extension"**
+4. Done! Icon will appear in your toolbar
+
+### **💻 Install from Source (Developers)**
+
+See [Installation Guide](#-installation--cara-pemasangan) below for manual installation from source code.
 
 ---
 
@@ -70,23 +91,36 @@ A browser extension that automatically fills all UiTM **SuFO**, **KIFO**, **Entr
 
 ## 📥 Installation / Cara Pemasangan
 
-### **Untuk Chrome/Edge/Brave:**
+### **Method 1: Chrome Web Store (Recommended / Disyorkan)**
 
-1. **Download Extension**
-   - Klik **Code** → **Download ZIP**
-   - Ekstrak fail ZIP ke folder
+**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)**
+
+✅ Easiest installation
+✅ Automatic updates
+✅ One-click install
+✅ Works on Chrome, Edge, Brave
+
+### **Method 2: Manual Installation (For Developers)**
+
+**Only use this if you want to modify the code or test development versions.**
+
+1. **Download Source Code**
+   - Click **Code** → **Download ZIP** on GitHub
+   - Extract the ZIP file to a folder
 
 2. **Enable Developer Mode**
-   - Pergi ke `chrome://extensions/` (atau `edge://extensions/`)
-   - Aktifkan **Developer mode** (toggle di kanan atas)
+   - Go to `chrome://extensions/` (or `edge://extensions/`)
+   - Enable **Developer mode** (toggle at top-right)
 
 3. **Load Extension**
-   - Klik **Load unpacked** / **Muat sambungan yang tidak dibungkus**
-   - Pilih folder yang telah diekstrak
+   - Click **Load unpacked** / **Muat sambungan yang tidak dibungkus**
+   - Select the extracted folder
 
 4. **Done! / Selesai!**
-   - Icon extension akan muncul di toolbar
-   - Pin icon untuk akses mudah
+   - Extension icon will appear in toolbar
+   - Pin the icon for easy access
+
+**Note:** Manual installations won't receive automatic updates.
 
 ---
 
@@ -179,7 +213,14 @@ Ufuture Extension/
 **Original Author:** UNIVERSE
 **Updated by:** Claude Code AI Assistant
 **Version:** 2.0
-**Last Updated:** 2025
+**Last Updated:** October 2025
+
+## 🔗 Links / Pautan
+
+- **Chrome Web Store:** [Install Extension](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)
+- **GitHub Repository:** [Source Code](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick)
+- **Report Issues:** [GitHub Issues](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/issues)
+- **Privacy Policy:** [View Policy](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/blob/main/PRIVACY_POLICY.md)
 
 ---
 
@@ -199,4 +240,12 @@ Alat ini mengautomasikan pengisian borang untuk menjimatkan masa. Pengguna berta
 
 ---
 
+## 💫 Get Started Now!
+
+**[→ Install from Chrome Web Store](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)**
+
 **🚀 Enjoy hassle-free survey completion! / Nikmati pengisian survey tanpa kerumitan!**
+
+---
+
+*Made with ❤️ for UiTM students*
