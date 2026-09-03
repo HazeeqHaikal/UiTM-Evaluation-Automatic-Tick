@@ -15,9 +15,13 @@ if (manifest.version !== pkg.version) {
   errors.push(`manifest.json is ${manifest.version} but package.json is ${pkg.version}`);
 }
 
-const tag = (process.env.GITHUB_REF_NAME || "").replace(/^v/, "");
-if (tag && tag !== manifest.version) {
-  errors.push(`git tag is v${tag} but manifest.json is ${manifest.version}`);
+// Only compare against a real tag. On a pull_request event GITHUB_REF_NAME is
+// the merge ref ("2/merge"), which is not a version and must not be checked.
+if (process.env.GITHUB_REF_TYPE === "tag") {
+  const tag = (process.env.GITHUB_REF_NAME || "").replace(/^v/, "");
+  if (tag !== manifest.version) {
+    errors.push(`git tag is v${tag} but manifest.json is ${manifest.version}`);
+  }
 }
 
 if (!/^\d+\.\d+(\.\d+)?(\.\d+)?$/.test(manifest.version)) {
