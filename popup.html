@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UiTM Evaluation Auto-Fill</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <header>
+        <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 10.5 8 14.5 16 5.5"></path>
+            </svg>
+        </div>
+        <div class="titles">
+            <h1>UiTM Evaluation</h1>
+            <p id="version">Auto-Fill</p>
+        </div>
+        <button id="settings" class="icon-btn" title="Settings" aria-label="Settings">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                <path d="M3 6h5M12 6h5M3 14h9M16 14h1"></path>
+                <circle cx="10" cy="6" r="2"></circle>
+                <circle cx="14" cy="14" r="2"></circle>
+            </svg>
+        </button>
+    </header>
+
+    <main>
+        <div id="status" class="status" data-tone="idle" role="status" aria-live="polite">
+            <span class="dot"></span>
+            <p id="status-message">Open a survey or the dashboard, then start.</p>
+        </div>
+
+        <div class="progress" id="progress" hidden>
+            <div class="progress-head">
+                <span id="progress-label">Progress</span>
+                <span><b id="progress-count">0 / 0</b></span>
+            </div>
+            <div class="track"><div class="fill" id="progress-fill"></div></div>
+        </div>
+
+        <button id="action" class="primary">Start</button>
+
+        <div class="options">
+            <div class="field">
+                <label for="strategy">Answers</label>
+                <select id="strategy">
+                    <option value="realistic">Realistic (low → high)</option>
+                    <option value="highest">Always highest</option>
+                    <option value="lowest">Always lowest</option>
+                    <option value="neutral">Neutral / middle</option>
+                </select>
+            </div>
+            <label class="toggle" for="dryRun" title="Show what would be selected without submitting">
+                <input type="checkbox" id="dryRun">
+                Preview
+            </label>
+        </div>
+
+        <div id="update-note"></div>
+
+        <details class="log">
+            <summary>Activity</summary>
+            <ul class="log-list" id="log"></ul>
+        </details>
+    </main>
+
+    <footer>
+        <span id="footer-note">Only runs on ufuture.uitm.edu.my</span>
+        <a id="repo-link" href="https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick" target="_blank" rel="noopener">GitHub</a>
+    </footer>
+
+    <script src="src/constants.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

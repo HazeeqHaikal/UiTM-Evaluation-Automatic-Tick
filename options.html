@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UiTM Evaluation Auto-Fill — Settings</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="options.css">
+</head>
+<body class="options-page">
+    <header>
+        <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 10.5 8 14.5 16 5.5"></path>
+            </svg>
+        </div>
+        <div class="titles">
+            <h1>Settings</h1>
+            <p id="version"></p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Answering</h2>
+
+            <div class="row">
+                <div class="row-text">
+                    <strong>Answer strategy</strong>
+                    <span>Realistic answers entrance surveys low and exit surveys high. The other
+                          options apply the same choice everywhere.</span>
+                </div>
+                <select id="strategy">
+                    <option value="realistic">Realistic</option>
+                    <option value="highest">Always highest</option>
+                    <option value="lowest">Always lowest</option>
+                    <option value="neutral">Neutral / middle</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="row-text">
+                    <strong>Submit automatically</strong>
+                    <span>Turn this off to fill a single survey and leave the submit to you.</span>
+                </div>
+                <label class="switch"><input type="checkbox" id="autoSubmit"><span></span></label>
+            </div>
+
+            <div class="row">
+                <div class="row-text">
+                    <strong>Preview mode</strong>
+                    <span>Report what would be selected without touching the page. Works on one
+                          survey at a time.</span>
+                </div>
+                <label class="switch"><input type="checkbox" id="dryRun"><span></span></label>
+            </div>
+        </section>
+
+        <section>
+            <h2>Updates</h2>
+            <div class="row">
+                <div class="row-text">
+                    <strong>Check GitHub for new versions</strong>
+                    <span>Chrome Web Store installs update themselves. This only matters if you
+                          loaded the extension unpacked. Sends no data — just an anonymous request
+                          for the latest release number.</span>
+                </div>
+                <label class="switch"><input type="checkbox" id="checkUpdates"><span></span></label>
+            </div>
+            <div class="row">
+                <div class="row-text">
+                    <strong id="update-state">Not checked yet</strong>
+                    <span id="update-detail"></span>
+                </div>
+                <button id="check-now" class="secondary">Check now</button>
+            </div>
+        </section>
+
+        <p class="saved" id="saved" hidden>Saved</p>
+    </main>
+
+    <script src="src/constants.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

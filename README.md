@@ -1,251 +1,177 @@
-# 🎓 UiTM Evaluation Auto-Fill Extension
+# UiTM Evaluation Auto-Fill
 
-**Version 2.0** - Modern UI | Enhanced Security | Full Automation
+**Version 3.0** — verified answers, live progress, preview mode
 
-[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Download-blue?logo=googlechrome)](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick)
-[![Version](https://img.shields.io/badge/Version-2.0-green)](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/releases)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?logo=googlechrome)](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)
+[![CI](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/actions/workflows/ci.yml/badge.svg)](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/badge/Version-3.0-green)](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/releases)
 
-Sambungan pelayar yang akan mengisi semua soalan **SuFO**, **KIFO**, **Entrance Survey** dan **Exit Survey** UiTM secara automatik. Dengan UI yang lebih moden dan ciri automasi penuh dari dashboard!
+Browser extension that fills UiTM **SuFO**, **KIFO**, **Entrance** and **Exit**
+surveys on `ufuture.uitm.edu.my`.
 
-A browser extension that automatically fills all UiTM **SuFO**, **KIFO**, **Entrance Survey** and **Exit Survey** questions. Features modern UI and full automation from the dashboard!
-
----
-
-## 🚀 Quick Install / Pemasangan Cepat
-
-### **📦 Install from Chrome Web Store (Recommended)**
-
-**[→ Download from Chrome Web Store](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)**
-
-1. Click the link above
-2. Click **"Add to Chrome"** / **"Tambah ke Chrome"**
-3. Confirm by clicking **"Add extension"**
-4. Done! Icon will appear in your toolbar
-
-### **💻 Install from Source (Developers)**
-
-See [Installation Guide](#-installation--cara-pemasangan) below for manual installation from source code.
+Sambungan pelayar yang mengisi soalan **SuFO**, **KIFO**, **Entrance Survey**
+dan **Exit Survey** UiTM.
 
 ---
 
-## ✨ Features / Ciri-ciri
+## Install
 
-### 🚀 **Dashboard Automation** (NEW!)
-- **Klik sekali sahaja** pada dashboard untuk memproses semua survey secara automatik
-- **One-click** from dashboard to process all surveys automatically
-- Automatically navigates through all incomplete entrance/exit surveys
-- Returns to dashboard when complete
+**[→ Chrome Web Store](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)** — installs and updates itself. Works on
+Chrome, Edge and Brave.
 
-### 🎨 **Modern UI**
-- Beautiful gradient design with Tailwind CSS
-- Animated status indicators
-- Smooth transitions and hover effects
-- Larger, more readable interface
+<details>
+<summary>From source (developers)</summary>
 
-### 🔒 **Enhanced Security**
-- Strict host permissions (only `ufuture.uitm.edu.my`)
-- Content Security Policy (CSP) implementation
-- No external CDN dependencies
-- Secure local processing
-
-### ⚡ **Performance**
-- Lightweight custom CSS (~4KB)
-- Fast loading with no external requests
-- Optimized code structure
-- Sequential processing to avoid rate limits
-
----
-
-## 📋 How It Works / Cara Penggunaan
-
-### **Logik Pengisian Survey:**
-- **Entrance Survey & KIFO**: Pilihan **pertama** (nilai 1) - Tahap pengetahuan rendah pada peringkat awal
-- **Exit Survey & SuFO**: Pilihan **terakhir** - Tahap pengetahuan/kepuasan tinggi pada akhir
-
-### **Survey Filling Logic:**
-- **Entrance Survey & KIFO**: **First** option (value 1) - Low knowledge level at start
-- **Exit Survey & SuFO**: **Last** option - High knowledge/satisfaction at end
-
----
-
-## 🎯 Usage Modes / Mod Penggunaan
-
-### **1. Dashboard Mode (Recommended / Disyorkan)**
-1. Navigate to `https://ufuture.uitm.edu.my/ess/dashboard/home`
-2. Click the extension icon
-3. Click **"Start Auto-Fill"**
-4. ✨ **Magic happens!** Extension will:
-   - Find all incomplete entrance/exit surveys
-   - Auto-fill each survey sequentially
-   - Submit automatically
-   - Return to dashboard when complete
-
-### **2. Manual Mode (Individual Survey)**
-1. Open any survey page directly
-2. Click the extension icon
-3. Click **"Start Auto-Fill"**
-4. Survey will be filled and submitted
-
----
-
-## 📥 Installation / Cara Pemasangan
-
-### **Method 1: Chrome Web Store (Recommended / Disyorkan)**
-
-**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)**
-
-✅ Easiest installation
-✅ Automatic updates
-✅ One-click install
-✅ Works on Chrome, Edge, Brave
-
-### **Method 2: Manual Installation (For Developers)**
-
-**Only use this if you want to modify the code or test development versions.**
-
-1. **Download Source Code**
-   - Click **Code** → **Download ZIP** on GitHub
-   - Extract the ZIP file to a folder
-
-2. **Enable Developer Mode**
-   - Go to `chrome://extensions/` (or `edge://extensions/`)
-   - Enable **Developer mode** (toggle at top-right)
-
-3. **Load Extension**
-   - Click **Load unpacked** / **Muat sambungan yang tidak dibungkus**
-   - Select the extracted folder
-
-4. **Done! / Selesai!**
-   - Extension icon will appear in toolbar
-   - Pin the icon for easy access
-
-**Note:** Manual installations won't receive automatic updates.
-
----
-
-## 🛠️ Technical Details / Butiran Teknikal
-
-### **Files Structure:**
-```
-Ufuture Extension/
-├── manifest.json       # Extension configuration
-├── index.html          # Popup UI
-├── index.js           # Main logic & popup handler
-├── content.js         # Auto-fill automation script
-├── tailwind.css       # UI styling utilities
-├── style.css          # Custom animations & effects
-└── icon128.png        # Extension icon
+```bash
+git clone https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick.git
+cd UiTM-Evaluation-Automatic-Tick
+npm install && npm test
 ```
 
-### **Technologies:**
-- **Manifest V3** - Latest Chrome extension standard
-- **Tailwind CSS** - Modern utility-first styling
-- **Vanilla JavaScript** - No dependencies
-- **Content Scripts** - Automatic survey detection
-
-### **Permissions:**
-- `scripting` - To inject auto-fill scripts
-- `activeTab` - To access current tab
-- `host_permissions` - Only for `ufuture.uitm.edu.my`
+Then open `chrome://extensions/`, turn on **Developer mode**, click **Load
+unpacked** and select the folder. Unpacked installs do not auto-update; the
+extension will tell you when a newer release is tagged on GitHub.
+</details>
 
 ---
 
-## 📸 Screenshots / Tangkapan Skrin
+## Using it
 
-**Modern UI:**
-- Gradient background (blue to indigo)
-- Large, readable buttons
-- Status indicators with icons
-- Smooth animations
+1. Open the **dashboard** (or a SuFO/KIFO listing page) and click **Start** —
+   the extension finds every incomplete survey, answers each one, submits it,
+   and returns you to the dashboard when it is done. The popup shows which
+   survey it is on and how many remain; **Stop** halts it immediately.
+2. Or open a **single survey** and click **Start** to do just that one.
 
-**Dashboard Automation:**
-- Automatically processes all surveys
-- No manual clicking required
-- Returns to dashboard when done
+Tick **Preview** first if you want to see what it would answer without
+submitting anything.
 
----
+### Answer strategies
 
-## ⚠️ Important Notes / Nota Penting
+| Strategy | What it does |
+|---|---|
+| **Realistic** (default) | Entrance & KIFO get the lowest option, Exit & SuFO the highest — the shape a real semester produces. |
+| Always highest | Top of the scale everywhere. |
+| Always lowest | Bottom of the scale everywhere. |
+| Neutral | Middle of the scale everywhere. |
 
-- Extension **ONLY works** on `ufuture.uitm.edu.my` domain for security
-- Currently focuses on **Entrance & Exit Surveys** (SuFO/KIFO support coming soon)
-- Keep the tab active while processing
-- Do not close the tab until all surveys are complete
-- Check console (F12) for detailed logs if needed
+Options are ranked by their value when that value looks like a Likert scale, and
+by their order on the page otherwise — so a survey that renders its options
+high-to-low still gets the answer you asked for.
 
----
+### What it will not do
 
-## 🐛 Troubleshooting / Penyelesaian Masalah
-
-**Extension doesn't work?**
-1. Make sure you're on the correct UiTM domain
-2. Reload the extension in `chrome://extensions/`
-3. Hard refresh the page (Ctrl + Shift + R)
-4. Check browser console for errors (F12)
-
-**Surveys not auto-processing?**
-1. Ensure you clicked from the dashboard page
-2. Check if surveys are marked as "Not Taken Yet"
-3. Keep the tab active (don't switch tabs)
+- **It will not submit an incomplete survey.** Every question is re-read after
+  filling. If something is unanswered the run stops and names it.
+- **It will not write comments for you.** Optional free-text boxes are left
+  blank. A *required* one is reported as blocking so you can write it yourself.
 
 ---
 
-## 📝 Changelog
+## How it works
 
-### **Version 2.0** (Current)
-- ✅ Complete UI redesign with Tailwind CSS
-- ✅ Dashboard automation mode
-- ✅ Sequential survey processing
-- ✅ Enhanced security with strict CSP
-- ✅ Performance optimizations
-- ✅ Improved error handling
+```
+popup.html / popup.js   Progress, controls, activity log. Holds no state.
+options.html/js/css     Settings, stored in chrome.storage.sync.
+background.js           Service worker. The only thing that navigates the tab.
+content.js              Reports the page and obeys the worker. Never navigates.
+src/survey-core.js      Answer selection, verification, scanning. Pure DOM logic.
+src/constants.js        Shared configuration.
+test/                   26 unit tests over survey-core, under jsdom.
+scripts/                Version check and zip build.
+```
 
-### **Version 1.2** (Legacy)
-- Basic auto-fill functionality
-- Bootstrap UI
-- Manual survey filling only
+The service worker owns a queue in `chrome.storage.session` and drives it one
+step at a time: navigate → the content script announces the page → fill →
+verify → submit → wait for the navigation that proves it landed. A survey that
+stalls is retried once, then recorded as failed and skipped. A 45-second
+watchdog covers a page that never responds.
 
----
+Earlier versions had the popup, the content script and the site's own redirect
+all trying to move the tab at once; which one won depended on timing.
 
-## 👨‍💻 Developer / Pembangun
+### Permissions
 
-**Original Author:** UNIVERSE
-**Updated by:** Claude Code AI Assistant
-**Version:** 2.0
-**Last Updated:** October 2025
-
-## 🔗 Links / Pautan
-
-- **Chrome Web Store:** [Install Extension](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)
-- **GitHub Repository:** [Source Code](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick)
-- **Report Issues:** [GitHub Issues](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/issues)
-- **Privacy Policy:** [View Policy](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/blob/main/PRIVACY_POLICY.md)
-
----
-
-## 📄 License / Lesen
-
-This extension is for **educational purposes only**. Use responsibly and in accordance with UiTM's policies.
-
-Sambungan ini adalah untuk **tujuan pendidikan sahaja**. Gunakan dengan bertanggungjawab dan mengikut dasar UiTM.
+| Permission | Why |
+|---|---|
+| `host_permissions: ufuture.uitm.edu.my` | The only site it touches. |
+| `host_permissions: api.github.com/repos/...` | Reads the latest release number. Nothing is sent. |
+| `scripting` | Injects the content script into tabs opened before the extension loaded. |
+| `activeTab` | Reads the URL of the tab you start from. |
+| `storage` | Settings, and the queue for the current run. |
+| `alarms` | The watchdog and the daily update check. |
 
 ---
 
-## 🙏 Disclaimer / Penafian
+## Development
 
-This tool automates form filling to save time. Users are responsible for ensuring the accuracy of their responses. The developers are not responsible for any misuse or consequences.
+```bash
+npm install
+npm test     # unit tests
+npm run lint # manifest / package.json / git tag must agree
+npm run build # dist/uitm-evaluation-auto-fill-<version>.zip
+```
 
-Alat ini mengautomasikan pengisian borang untuk menjimatkan masa. Pengguna bertanggungjawab memastikan ketepatan jawapan mereka. Pembangun tidak bertanggungjawab atas sebarang penyalahgunaan atau akibat.
+### Releasing
+
+Pushing a `v*` tag runs the tests and publishes to the Chrome Web Store.
+
+```bash
+# bump the version in BOTH package.json and manifest.json, then:
+git commit -am "v3.0.1"
+git tag v3.0.1
+git push --follow-tags
+```
+
+The workflow refuses to run if the tag, `package.json` and `manifest.json`
+disagree. It needs four repository secrets, created once from a Google Cloud
+OAuth client with the Chrome Web Store API enabled:
+
+| Secret | Where it comes from |
+|---|---|
+| `CWS_EXTENSION_ID` | The id in your Web Store item URL. |
+| `CWS_CLIENT_ID` | Google Cloud → APIs & Services → Credentials → OAuth client (Desktop app). |
+| `CWS_CLIENT_SECRET` | Same OAuth client. |
+| `CWS_REFRESH_TOKEN` | One-time OAuth exchange for scope `https://www.googleapis.com/auth/chromewebstore`. |
+
+Without those secrets the workflow still builds and attaches the zip to a GitHub
+Release — it just skips the store upload, so forks work.
+
+**Note on direction:** GitHub can push to the Chrome Web Store, but the Web
+Store cannot push back. There is no API to read a published extension's source,
+so this repository has to stay the source of truth. Anything uploaded to the
+store by hand will be overwritten by the next tagged release.
 
 ---
 
-## 💫 Get Started Now!
+## Troubleshooting
 
-**[→ Install from Chrome Web Store](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)**
-
-**🚀 Enjoy hassle-free survey completion! / Nikmati pengisian survey tanpa kerumitan!**
+| Symptom | Try |
+|---|---|
+| Nothing happens | Check you are on `ufuture.uitm.edu.my`. The popup says so if you are not. |
+| "No incomplete surveys found" | You are on a page with no survey links. Open the dashboard. |
+| A survey is skipped | Open the **Activity** log in the popup — it names the survey and why. |
+| It stops on one survey | The page had an unanswered question the extension could not identify. Answer that one by hand and start again. |
+| Just updated and it misbehaves | Reload the extension at `chrome://extensions/`, then hard-refresh the page. |
 
 ---
 
-*Made with ❤️ for UiTM students*
+## Disclaimer
+
+This tool automates form filling. You remain responsible for the accuracy of
+your responses and for following UiTM's policies. Preview mode exists so you can
+check what it would submit before it does.
+
+Alat ini mengautomasikan pengisian borang. Anda bertanggungjawab memastikan
+ketepatan jawapan anda dan mematuhi dasar UiTM.
+
+## Links
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/uitm-evaluation-automatic/pdfamomgbaoabjjhjldppbnjnoigemgl)
+- [Changelog](CHANGELOG.md)
+- [Privacy Policy](PRIVACY_POLICY.md)
+- [Report an issue](https://github.com/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/issues)
+
+## License
+
+MIT. Original author: UNIVERSE.

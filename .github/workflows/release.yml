@@ -1,0 +1,116 @@
+name: Release
+
+# Tag a commit to ship it:
+#
+#   npm version 3.0.1 --no-git-tag-version   # bumps package.json
+#   # bump "version" in manifest.json to match
+#   git commit -am "v3.0.1" && git tag v3.0.1 && git push --follow-tags
+#
+# The job refuses to run if the tag, package.json and manifest.json disagree.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish to the Chrome Web Store"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - name: Verify version agreement
+        run: npm run lint
+
+      - run: npm test
+
+      - name: Build extension zip
+        id: build
+        run: |
+          npm run build
+          echo "zip=$(ls dist/*.zip)" >> "$GITHUB_OUTPUT"
+
+      - name: Attach the zip to a GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.build.outputs.zip }}
+          generate_release_notes: true
+
+      # ---- Chrome Web Store ------------------------------------------------
+      # Requires four repository secrets, created once from a Google Cloud
+      # OAuth client with the Chrome Web Store API enabled:
+      #   CWS_EXTENSION_ID CWS_CLIENT_ID CWS_CLIENT_SECRET CWS_REFRESH_TOKEN
+      # Without them this step is skipped, so forks still build cleanly.
+      - name: Publish to the Chrome Web Store
+        if: >-
+          (startsWith(github.ref, 'refs/tags/') || inputs.publish) &&
+          github.repository == 'HazeeqHaikal/UiTM-Evaluation-Automatic-Tick'
+        env:
+          EXT_ID: ${{ secrets.CWS_EXTENSION_ID }}
+          CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CWS_CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.CWS_REFRESH_TOKEN }}
+          ZIP: ${{ steps.build.outputs.zip }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${EXT_ID:-}" ] || [ -z "${REFRESH_TOKEN:-}" ]; then
+            echo "::warning::Chrome Web Store secrets are not configured — skipping publish."
+            exit 0
+          fi
+
+          echo "Exchanging refresh token for an access token…"
+          ACCESS_TOKEN=$(curl -sS -X POST https://oauth2.googleapis.com/token \
+            -d "client_id=${CLIENT_ID}" \
+            -d "client_secret=${CLIENT_SECRET}" \
+            -d "refresh_token=${REFRESH_TOKEN}" \
+            -d "grant_type=refresh_token" | jq -r '.access_token')
+
+          if [ -z "$ACCESS_TOKEN" ] || [ "$ACCESS_TOKEN" = "null" ]; then
+            echo "::error::Could not obtain an access token. Check the CWS_* secrets."
+            exit 1
+          fi
+
+          echo "Uploading ${ZIP}…"
+          UPLOAD=$(curl -sS -X PUT \
+            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+            -H "x-goog-api-version: 2" \
+            -T "${ZIP}" \
+            "https://www.googleapis.com/upload/chromewebstore/v1.1/items/${EXT_ID}")
+          echo "$UPLOAD" | jq .
+
+          STATE=$(echo "$UPLOAD" | jq -r '.uploadState // "FAILURE"')
+          if [ "$STATE" != "SUCCESS" ]; then
+            echo "::error::Upload failed: $(echo "$UPLOAD" | jq -r '.itemError // empty')"
+            exit 1
+          fi
+
+          echo "Publishing…"
+          PUBLISH=$(curl -sS -X POST \
+            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+            -H "x-goog-api-version: 2" \
+            -H "Content-Length: 0" \
+            "https://www.googleapis.com/chromewebstore/v1.1/items/${EXT_ID}/publish")
+          echo "$PUBLISH" | jq .
+
+          if echo "$PUBLISH" | jq -e '.status | index("OK")' > /dev/null; then
+            echo "Submitted. Google review usually takes a few hours to a few days."
+          else
+            echo "::error::Publish rejected: $(echo "$PUBLISH" | jq -r '.statusDetail // empty')"
+            exit 1
+          fi

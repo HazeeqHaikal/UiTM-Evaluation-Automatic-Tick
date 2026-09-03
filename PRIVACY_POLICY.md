@@ -1,6 +1,6 @@
 # Privacy Policy for UiTM Evaluation Auto-Fill Extension
 
-**Last Updated: October 6, 2025**
+**Last Updated: September 3, 2026 — applies to version 3.0.0**
 
 ## Overview
 UiTM Evaluation Auto-Fill Extension ("the Extension") is committed to protecting your privacy. This privacy policy explains how the Extension handles user data.
@@ -11,15 +11,25 @@ UiTM Evaluation Auto-Fill Extension ("the Extension") is committed to protecting
 Specifically:
 - ❌ We do NOT collect personal information
 - ❌ We do NOT track your browsing activity
-- ❌ We do NOT send data to external servers
-- ❌ We do NOT use analytics or tracking tools
-- ❌ We do NOT store cookies or persistent data
+- ❌ We do NOT use analytics, advertising or tracking tools
+- ❌ We do NOT set cookies
+- ❌ We do NOT send your data anywhere, and we run no server of our own
+
+Two things the Extension *does* keep or send, described in full below, so that
+the list above is not read as more than it says:
+
+- It **saves your settings** and the queue for the run in progress in your own
+  browser. See [What Is Stored, and Where](#what-is-stored-and-where).
+- If you leave the update check on, it **asks GitHub for the latest version
+  number** once a day. This carries nothing about you beyond the IP address and
+  user-agent that any web request reveals. See
+  [Third-Party Services](#third-party-services). You can switch it off.
 
 ## Permissions Used
 
 ### 1. **Scripting Permission**
-- **Purpose:** To automatically fill survey forms on UiTM's website
-- **Scope:** Only executes scripts when you click the extension button
+- **Purpose:** To place the auto-fill script into a ufuture.uitm.edu.my tab that was already open before the Extension was loaded or updated
+- **Scope:** ufuture.uitm.edu.my only. The script itself does nothing until you press Start; it loads on those pages so that it is ready to report progress during a run
 - **Data:** No data is collected or stored
 
 ### 2. **Active Tab Permission**
@@ -32,32 +42,60 @@ Specifically:
 - **Scope:** Limited to ufuture.uitm.edu.my domain only
 - **Data:** No data is collected or stored
 
-## Temporary Storage
-The Extension uses browser `sessionStorage` temporarily to:
-- Track which surveys are being processed
-- Navigate between surveys during automation
-- **Note:** This data is automatically deleted when:
-  - All surveys are completed
-  - You close the browser tab
-  - You navigate away from the UiTM website
+### 4. **Storage Permission**
+- **Purpose:** To remember your settings, and to hold the list of surveys for the run in progress
+- **Scope:** Your own browser. Settings use Chrome's own sync, so they follow your Chrome profile if you have sync enabled
+- **Data:** Your chosen answer strategy and toggles, plus survey URLs on ufuture.uitm.edu.my for the duration of a run. No answers, grades, names or identifiers
 
-**This temporary storage:**
-- ✅ Stays on your device only
-- ✅ Is NOT sent to any server
-- ✅ Is automatically cleared after use
+### 5. **Alarms Permission**
+- **Purpose:** A timeout that recovers a stuck page, and a once-a-day update check
+- **Scope:** Local scheduling only
+- **Data:** None
+
+### 6. **Host Permissions (api.github.com/repos/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick)**
+- **Purpose:** To read the version number of the latest public release, so people running an unpacked copy are told when it is out of date
+- **Scope:** One unauthenticated `GET` for the public releases endpoint of this repository
+- **Data sent:** Nothing beyond what any HTTP request necessarily includes (your IP address and browser user-agent, seen by GitHub). No identifiers, no page content, no survey data, no extension usage
+- **Turn it off:** Settings → Updates → "Check GitHub for new versions". Chrome Web Store installs update themselves regardless, so switching it off costs you nothing
+
+## What Is Stored, and Where
+
+| What | Where | Cleared when |
+|---|---|---|
+| Your settings (answer strategy, auto-submit, preview, update check) | `chrome.storage.sync` | You uninstall the extension |
+| The queue for the run in progress: survey URLs on ufuture.uitm.edu.my, progress counters, and the activity log shown in the popup | `chrome.storage.session` | The run finishes, or you close the browser |
+| The latest release number seen on GitHub | `chrome.storage.local` | You uninstall the extension |
+
+All three stay on your device. None of them is sent anywhere.
+
+**The Extension never stores your survey answers, your student details, your
+grades, or anything identifying you.**
 
 ## How the Extension Works
-1. You click the extension button on the UiTM dashboard
+1. You open the UiTM dashboard, a SuFO/KIFO listing, or a single survey, and press Start
 2. The extension scans the page locally for survey links
-3. It navigates to each survey and fills forms automatically
-4. All processing happens locally on your computer
-5. No data leaves your browser
+3. It navigates to each survey, fills the form, and re-reads the page to confirm every question is answered before submitting
+4. All form processing happens locally on your computer
+5. No survey data, and nothing about you, leaves your browser
 
 ## Third-Party Services
-The Extension does NOT use any third-party services, analytics, or external APIs.
+
+The Extension has no analytics, no tracking, and no advertising, and it sends
+your data to nobody.
+
+It makes exactly one external request, and only if you leave the update check
+switched on: an unauthenticated `GET` to GitHub's public releases endpoint for
+this repository, at most once a day, to read a version number. GitHub sees that
+request the way it sees any visitor — your IP address and user-agent. It carries
+no identifier, no page content and nothing about your surveys. You can turn it
+off in Settings.
 
 ## Data Security
-Since we don't collect any data, there is no data to secure. All form-filling happens locally in your browser.
+There is no account, no server and no transmission of your data, so there is no
+copy of it anywhere for anyone to breach. What the Extension saves — your
+settings and the queue for the current run — lives in your browser's own
+extension storage, protected by your browser and your operating system like any
+other browser data. All form-filling happens locally on your computer.
 
 ## Changes to This Policy
 If we ever change our privacy practices, we will update this policy and notify users through the extension update notes.
@@ -81,10 +119,12 @@ This extension complies with:
 - Chrome Extension Data Usage Requirements
 
 ## Summary
-**Your privacy is important to us. This extension does not collect, store, or transmit any of your personal data. Period.**
+**This extension does not collect, store, or transmit any of your personal
+data.** The only thing it ever sends anywhere is an anonymous request to GitHub
+asking what the newest version number is, which you can switch off.
 
 ---
 
 **Developer:** UNIVERSE
-**Version:** 2.0
-**Last Updated:** October 6, 2025
+**Version:** 3.0.0
+**Last Updated:** September 3, 2026
