@@ -28,6 +28,21 @@ if (!/^\d+\.\d+(\.\d+)?(\.\d+)?$/.test(manifest.version)) {
   errors.push(`"${manifest.version}" is not a valid Chrome extension version`);
 }
 
+// The origin the code requests at runtime must be declared as optional in the
+// manifest, or chrome.permissions.request() throws at the worst moment.
+const constants = require("../src/constants.js");
+const optional = manifest.optional_host_permissions || [];
+if (!optional.includes(constants.GITHUB_ORIGIN)) {
+  errors.push(
+    `constants.GITHUB_ORIGIN (${constants.GITHUB_ORIGIN}) is not in optional_host_permissions`
+  );
+}
+if ((manifest.host_permissions || []).some((h) => h.includes("api.github.com"))) {
+  errors.push(
+    "api.github.com is a required host permission; it must be optional so updates install silently"
+  );
+}
+
 const referenced = [
   manifest.background && manifest.background.service_worker,
   manifest.action && manifest.action.default_popup,

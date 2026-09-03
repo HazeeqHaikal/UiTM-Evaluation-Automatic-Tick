@@ -82,11 +82,17 @@
     strategy: STRATEGY.REALISTIC,
     dryRun: false,
     autoSubmit: true,
-    checkUpdates: true,
+    checkUpdates: false,
   };
 
   const GITHUB_LATEST_RELEASE =
     "https://api.github.com/repos/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/releases/latest";
+
+  // Optional, not required. Asking for it up front would make every existing
+  // user re-approve the extension on update — for a feature that only helps
+  // unpacked installs, which get no store updates anyway.
+  const GITHUB_ORIGIN =
+    "https://api.github.com/repos/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick/*";
 
   const API = {
     ORIGIN,
@@ -102,6 +108,7 @@
     MSG,
     DEFAULT_SETTINGS,
     GITHUB_LATEST_RELEASE,
+    GITHUB_ORIGIN,
   };
 
   global.UiTMConst = API;

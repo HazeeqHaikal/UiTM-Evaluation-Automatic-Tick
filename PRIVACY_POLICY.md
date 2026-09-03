@@ -20,10 +20,11 @@ the list above is not read as more than it says:
 
 - It **saves your settings** and the queue for the run in progress in your own
   browser. See [What Is Stored, and Where](#what-is-stored-and-where).
-- If you leave the update check on, it **asks GitHub for the latest version
-  number** once a day. This carries nothing about you beyond the IP address and
-  user-agent that any web request reveals. See
-  [Third-Party Services](#third-party-services). You can switch it off.
+- **Only if you switch on the optional update check**, it asks GitHub for the
+  latest version number once a day. This is off by default and requires your
+  approval at a Chrome prompt. It carries nothing about you beyond the IP
+  address and user-agent that any web request reveals. See
+  [Third-Party Services](#third-party-services).
 
 ## Permissions Used
 
@@ -52,11 +53,12 @@ the list above is not read as more than it says:
 - **Scope:** Local scheduling only
 - **Data:** None
 
-### 6. **Host Permissions (api.github.com/repos/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick)**
+### 6. **Optional Host Permission (api.github.com/repos/HazeeqHaikal/UiTM-Evaluation-Automatic-Tick)**
+- **Optional, and off by default.** The Extension does not hold this permission unless you switch on "Check GitHub for new versions" in Settings and approve Chrome's prompt. Until then no request is ever made
 - **Purpose:** To read the version number of the latest public release, so people running an unpacked copy are told when it is out of date
-- **Scope:** One unauthenticated `GET` for the public releases endpoint of this repository
+- **Scope:** One unauthenticated `GET` for the public releases endpoint of this repository, at most once a day
 - **Data sent:** Nothing beyond what any HTTP request necessarily includes (your IP address and browser user-agent, seen by GitHub). No identifiers, no page content, no survey data, no extension usage
-- **Turn it off:** Settings → Updates → "Check GitHub for new versions". Chrome Web Store installs update themselves regardless, so switching it off costs you nothing
+- **Withdraw it:** Switch the setting off, or remove the site access at `chrome://extensions/`. Either stops the check immediately. Chrome Web Store installs update themselves regardless, so switching it off costs you nothing
 
 ## What Is Stored, and Where
 
@@ -83,12 +85,15 @@ grades, or anything identifying you.**
 The Extension has no analytics, no tracking, and no advertising, and it sends
 your data to nobody.
 
-It makes exactly one external request, and only if you leave the update check
-switched on: an unauthenticated `GET` to GitHub's public releases endpoint for
-this repository, at most once a day, to read a version number. GitHub sees that
-request the way it sees any visitor — your IP address and user-agent. It carries
-no identifier, no page content and nothing about your surveys. You can turn it
-off in Settings.
+Out of the box it makes no external request at all.
+
+One is possible, and only if you switch on the optional update check and approve
+Chrome's permission prompt: an unauthenticated `GET` to GitHub's public releases
+endpoint for this repository, at most once a day, to read a version number.
+GitHub sees that request the way it sees any visitor — your IP address and
+user-agent. It carries no identifier, no page content and nothing about your
+surveys. Switching the setting off, or removing the site access at
+`chrome://extensions/`, stops it.
 
 ## Data Security
 There is no account, no server and no transmission of your data, so there is no
@@ -120,8 +125,9 @@ This extension complies with:
 
 ## Summary
 **This extension does not collect, store, or transmit any of your personal
-data.** The only thing it ever sends anywhere is an anonymous request to GitHub
-asking what the newest version number is, which you can switch off.
+data.** By default it contacts nothing at all. The only request it can ever make
+is an anonymous one to GitHub asking what the newest version number is, and that
+is off until you turn it on and approve it.
 
 ---
 

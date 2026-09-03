@@ -373,16 +373,32 @@ function compareVersions(a, b) {
   return 0;
 }
 
+/** Has the user actually granted the optional api.github.com origin? */
+async function hasUpdatePermission() {
+  try {
+    return await chrome.permissions.contains({ origins: [C.GITHUB_ORIGIN] });
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Compare against the latest GitHub release. Store-installed copies update
  * themselves; this exists for people running an unpacked build, who get no
- * updates at all otherwise. Sends nothing but an unauthenticated GET.
+ * updates at all otherwise. Sends nothing but an unauthenticated GET, and only
+ * once the user has granted the optional permission from the settings page.
  */
 async function checkForUpdate() {
   const settings = await loadSettings();
+  const current = chrome.runtime.getManifest().version;
   if (!settings.checkUpdates) return null;
 
-  const current = chrome.runtime.getManifest().version;
+  if (!(await hasUpdatePermission())) {
+    const info = { current, latest: null, needsPermission: true, checkedAt: Date.now() };
+    await chrome.storage.local.set({ [UPDATE_KEY]: info });
+    return info;
+  }
+
   try {
     const res = await fetch(C.GITHUB_LATEST_RELEASE, {
       headers: { Accept: "application/vnd.github+json" },
@@ -437,6 +453,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           break;
         }
         case C.MSG.CHECK_UPDATE: {
+          await syncUpdateAlarm();
           sendResponse({ ok: true, update: await checkForUpdate() });
           break;
         }
@@ -498,13 +515,24 @@ chrome.tabs.onRemoved.addListener(async (tabId) => {
   }
 });
 
+/** The daily check only exists while the user has opted in and granted access. */
+async function syncUpdateAlarm() {
+  const settings = await loadSettings();
+  if (settings.checkUpdates && (await hasUpdatePermission())) {
+    chrome.alarms.create(UPDATE_ALARM, { periodInMinutes: 60 * 24 });
+  } else {
+    await chrome.alarms.clear(UPDATE_ALARM);
+  }
+}
+
 chrome.runtime.onInstalled.addListener(async () => {
   const settings = await loadSettings();
   await chrome.storage.sync.set({ [SETTINGS_KEY]: settings });
-  chrome.alarms.create(UPDATE_ALARM, { periodInMinutes: 60 * 24 });
-  await checkForUpdate();
+  await syncUpdateAlarm();
 });
 
-chrome.runtime.onStartup.addListener(() => {
-  chrome.alarms.create(UPDATE_ALARM, { periodInMinutes: 60 * 24 });
-});
+chrome.runtime.onStartup.addListener(syncUpdateAlarm);
+
+// Revoking the origin from chrome://extensions must stop the check too.
+if (chrome.permissions.onRemoved) chrome.permissions.onRemoved.addListener(syncUpdateAlarm);
+if (chrome.permissions.onAdded) chrome.permissions.onAdded.addListener(syncUpdateAlarm);

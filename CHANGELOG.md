@@ -42,8 +42,12 @@ has not verified.
 - Dropdown questions are answered; required comment boxes are reported as
   blocking rather than filled with invented text.
 - Confirmation modals after submitting are handled.
-- Settings page, and an update check against GitHub releases for unpacked
-  installs.
+- Settings page, and an optional update check against GitHub releases for
+  unpacked installs. The GitHub origin is an **optional** host permission that
+  is off by default and requested at runtime, so upgrading to 3.0 does not
+  raise a permission warning — which would otherwise have made Chrome disable
+  the extension for every existing user until they re-approved it, in exchange
+  for a feature that only helps installs the store does not update anyway.
 - 26 unit tests over the answer-selection and scanning logic, and CI.
 
 ### Changed
@@ -51,7 +55,8 @@ has not verified.
 - Popup rebuilt without Tailwind. Roughly 290 lines of CSS, light and dark.
 - Run state moved from `sessionStorage` to `chrome.storage.session`, so the
   popup can show progress after being closed and reopened.
-- New permissions: `storage` and `alarms`.
+- New permissions: `storage` and `alarms`, both warning-free. No new *required*
+  host permissions, so the update installs silently.
 
 ## 2.0
 

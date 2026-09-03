@@ -29,8 +29,10 @@ npm install && npm test
 ```
 
 Then open `chrome://extensions/`, turn on **Developer mode**, click **Load
-unpacked** and select the folder. Unpacked installs do not auto-update; the
-extension will tell you when a newer release is tagged on GitHub.
+unpacked** and select the folder. Unpacked installs do not auto-update — turn on
+**Settings → Updates → Check GitHub for new versions** and the extension will
+tell you when a newer release is tagged. It asks for access to GitHub's releases
+endpoint the first time you enable it.
 </details>
 
 ---
@@ -95,7 +97,7 @@ all trying to move the tab at once; which one won depended on timing.
 | Permission | Why |
 |---|---|
 | `host_permissions: ufuture.uitm.edu.my` | The only site it touches. |
-| `host_permissions: api.github.com/repos/...` | Reads the latest release number. Nothing is sent. |
+| `optional_host_permissions: api.github.com/repos/...` | **Optional, off by default.** Reads the latest release number. Granted only if you turn the update check on in Settings, so installing an update never makes you re-approve the extension. |
 | `scripting` | Injects the content script into tabs opened before the extension loaded. |
 | `activeTab` | Reads the URL of the tab you start from. |
 | `storage` | Settings, and the queue for the current run. |
@@ -143,6 +145,13 @@ so this repository has to stay the source of truth. Anything uploaded to the
 store by hand will be overwritten by the next tagged release.
 
 ---
+
+### A note on updating
+
+Store installs update themselves within a few hours of a release going live.
+That stays true here because the GitHub access this extension can use is an
+*optional* permission: nothing in a routine update adds a permission warning, so
+Chrome never disables the extension waiting for you to re-approve it.
 
 ## Troubleshooting
 
